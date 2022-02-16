@@ -2,3 +2,4 @@ celery
 redis
 fastapi
 uvicorn
+psutil
