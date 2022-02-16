@@ -7,7 +7,7 @@ class Config:
   enable_utc=True
   timezone='Asia/Irkutsk'
   result_backend='rpc://'
-  broker_url='pyamqp://guest@192.168.88.82/'
+  broker_url='pyamqp://guest@rabbitmq/'
   include=['calcpicelery.tasks']
 
 app.config_from_object(Config)

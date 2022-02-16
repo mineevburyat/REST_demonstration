@@ -1,0 +1,13 @@
+version: "3"
+services:
+  rabbitmqsrv:
+    image: rabbitmq
+    ports: 
+      - "5672:5672"
+  project:
+    build: .
+    ports:
+      - "8000:8000"
+      - "9001:9001"
+    links:
+      - rabbitmqsrv
