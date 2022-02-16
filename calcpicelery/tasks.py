@@ -16,9 +16,14 @@ def calcPi(self, decimal:int):
   sleepVar = 0
   id = self.request.id
   file_id = 'results/' + id
-  selfresult = {'starttime': datetime.datetime.now().strftime('%c'),
-                'status': "PROGRESS",
-                'result': {'percent': 0, 'intermediate': 3}}
+  try:
+    with open(file_id, 'rb') as f:
+      selfresult = json.load(f)
+  except FileNotFoundError:
+    selfresult={'id': "error??"}
+  selfresult['starttime'] = datetime.datetime.now().strftime('%c')
+  selfresult['status'] =  "PROGRESS"
+  selfresult['result']= {'percent': 0, 'intermediate': 3}
   with open(file_id, 'w') as f:
         json.dump(selfresult, f)
   # percentwork
