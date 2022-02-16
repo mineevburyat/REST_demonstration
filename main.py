@@ -16,6 +16,9 @@ async def home():
 @app.get('/leibnic/{decimal}')
 async def leibnic_method_calc_from_celery(decimal: int):
     result = calcPi.delay(decimal)
+    selfresult = {'status': "WAITING"}
+    with open('results/'+result.id, 'w') as f:
+        json.dump(selfresult, f)
     return {'id': result.id}
 
 @app.get("/tasks/{task_id}")
