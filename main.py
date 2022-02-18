@@ -5,6 +5,7 @@ from monitoring import *
 from calcpicelery.tasks import calcPi
 import json
 import datetime
+import os
 
 app = FastAPI()
 
@@ -29,6 +30,15 @@ async def get_status_task(task_id: str):
     except FileNotFoundError:
         return {'error': "tasks not found"}
     return {**fresults}
+
+@app.get('/alltasks/')
+async def get_tasks_list():
+    files = os.listdir('results')
+    results = {}
+    for file in files:
+        with open('results/'+file, 'r') as f:
+            results[file] = json.load(f)
+    return results
 
 
 @app.get('/cpu/times_percent', response_model=Dict[int, CPUTimesPercent])
