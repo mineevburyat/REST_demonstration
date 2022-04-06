@@ -10,23 +10,23 @@ struct calcResult {
   /**
   * UUID задачи
   */
-  1: str id,
+  1: string id,
   /**
   * статус выполнения задачи (строка константа)
   */
-  2: str status,
+  2: string status,
   /**
   * время постановки задачи в очередь
   */
-  3: str pushtime,
+  3: string pushtime,
   /**
   * время начала вычисления (опционально)
   */
-  4: optional str starttime,
+  4: optional string starttime,
   /**
   * время завершения вычисления (опционально)
   */
-  5: optional str stoptime,
+  5: optional string stoptime,
   /** 
   * текущий результат (опционально)
   */
@@ -55,7 +55,7 @@ service RPCService {
   * @param decimal количество цифр после запятой
   * @return UUID задачи в очереди
   */
-  str startCalcPi(1: i8 decimal)
+  string startCalcPi(1: i8 decimal)
   /**
   * Получить результат задачи по UUID
   *
@@ -63,12 +63,12 @@ service RPCService {
   * @return отчет о задаче в очереди 
   * @throws BadTask отсутствие идентификатора задачи
   */
-  calcResult getTaskStatus(1: str uuid)
+  calcResult getTaskStatus(1: string uuid)
      throws (1: BadTask bt) 
   /**
-  * Получить список всех задач
+  * показать список всех задач
   *
   * @return список всех задач в очереди
   */
-  list<calcResult> listTask()
+  list<calcResult> listTasks()
 }

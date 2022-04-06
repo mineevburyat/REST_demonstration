@@ -13,7 +13,7 @@
 <td>rpcinterface</td><td><a href="#Svc_RPCService">RPCService</a><br/>
 <ul>
 <li><a href="#Fn_RPCService_getTaskStatus">getTaskStatus</a></li>
-<li><a href="#Fn_RPCService_listTask">listTask</a></li>
+<li><a href="#Fn_RPCService_listTasks">listTasks</a></li>
 <li><a href="#Fn_RPCService_startCalcPi">startCalcPi</a></li>
 </ul>
 </td>
@@ -25,15 +25,15 @@
 <hr/><h2 id="Structs">Data structures</h2>
 <div class="definition"><h3 id="Struct_calcResult">Struct: calcResult</h3>
 <table class="table-bordered table-striped table-condensed"><thead><tr><th>Key</th><th>Field</th><th>Type</th><th>Description</th><th>Requiredness</th><th>Default value</th></tr></thead><tbody>
-<tr><td>1</td><td>id</td><td><code><a href="#Struct_str">str</a></code></td><td>UUID задачи
+<tr><td>1</td><td>id</td><td><code>string</code></td><td>UUID задачи
 </td><td>default</td><td></td></tr>
-<tr><td>2</td><td>status</td><td><code><a href="#Struct_str">str</a></code></td><td>статус выполнения задачи (строка константа)
+<tr><td>2</td><td>status</td><td><code>string</code></td><td>статус выполнения задачи (строка константа)
 </td><td>default</td><td></td></tr>
-<tr><td>3</td><td>pushtime</td><td><code><a href="#Struct_str">str</a></code></td><td>время постановки задачи в очередь
+<tr><td>3</td><td>pushtime</td><td><code>string</code></td><td>время постановки задачи в очередь
 </td><td>default</td><td></td></tr>
-<tr><td>4</td><td>starttime</td><td><code><a href="#Struct_str">str</a></code></td><td>время начала вычисления (опционально)
+<tr><td>4</td><td>starttime</td><td><code>string</code></td><td>время начала вычисления (опционально)
 </td><td>optional</td><td></td></tr>
-<tr><td>5</td><td>stoptime</td><td><code><a href="#Struct_str">str</a></code></td><td>время завершения вычисления (опционально)
+<tr><td>5</td><td>stoptime</td><td><code>string</code></td><td>время завершения вычисления (опционально)
 </td><td>optional</td><td></td></tr>
 <tr><td>6</td><td>result</td><td><code>double</code></td><td>текущий результат (опционально)
 </td><td>optional</td><td></td></tr>
@@ -42,26 +42,27 @@
 <table class="table-bordered table-striped table-condensed"><thead><tr><th>Key</th><th>Field</th><th>Type</th><th>Description</th><th>Requiredness</th><th>Default value</th></tr></thead><tbody>
 <tr><td>1</td><td>uuid</td><td><code>string</code></td><td>The problem uuid
 </td><td>default</td><td></td></tr>
-<tr><td>2</td><td>error_code</td><td><code>i16</code></td><td></td><td>default</td><td></td></tr>
+<tr><td>2</td><td>error_code</td><td><code>i16</code></td><td>Сервисный код
+</td><td>default</td><td></td></tr>
 </tbody></table><br/></div><hr/><h2 id="Services">Services</h2>
 <h3 id="Svc_RPCService">Service: RPCService</h3>
 <div class="definition"><h4 id="Fn_RPCService_startCalcPi">Function: RPCService.startCalcPi</h4>
-<pre><code><a href="#Struct_str">str</a></code> startCalcPi(<code>i8</code> decimal)
+<pre><code>string</code> startCalcPi(<code>i8</code> decimal)
 </pre><pre>Запустить вычисление числа Pi с заданной точностью
 
 @param decimal количество цифр после запятой
 @return UUID задачи в очереди
 </pre><br/></div><div class="definition"><h4 id="Fn_RPCService_getTaskStatus">Function: RPCService.getTaskStatus</h4>
-<pre><code><a href="#Struct_calcResult">calcResult</a></code> getTaskStatus(<code><a href="#Struct_str">str</a></code> uuid)
+<pre><code><a href="#Struct_calcResult">calcResult</a></code> getTaskStatus(<code>string</code> uuid)
     throws <code><a href="#Struct_BadTask">BadTask</a></code>
 </pre><pre>Получить результат задачи по UUID
 
 @param uuid идентификатор задачи в очереди
 @return отчет о задаче в очереди
 @throws BadTask отсутствие идентификатора задачи
-</pre><br/></div><div class="definition"><h4 id="Fn_RPCService_listTask">Function: RPCService.listTask</h4>
-<pre><code>list&lt;<code><a href="#Struct_calcResult">calcResult</a></code>&gt;</code> listTask()
-</pre><pre>Получить список всех задач
+</pre><br/></div><div class="definition"><h4 id="Fn_RPCService_listTasks">Function: RPCService.listTasks</h4>
+<pre><code>list&lt;<code><a href="#Struct_calcResult">calcResult</a></code>&gt;</code> listTasks()
+</pre><pre>показать список всех задач
 
 @return список всех задач в очереди
 </pre><br/></div></div></body></html>

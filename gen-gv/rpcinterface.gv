@@ -1,0 +1,19 @@
+digraph "rpcinterface" {
+node [style=filled, shape=record];
+edge [arrowsize=0.5];
+rankdir=LR
+node [fillcolor=beige];
+calcResult [label="struct calcResult|<field_id>id :: string|<field_status>status :: string|<field_pushtime>pushtime :: string|<field_starttime>starttime :: string|<field_stoptime>stoptime :: string|<field_result>result :: double"];
+node [fillcolor=lightpink];
+BadTask [label="exception BadTask|<field_uuid>uuid :: string|<field_error_code>error_code :: i16"];
+subgraph cluster_RPCService {
+node [fillcolor=bisque];
+style=dashed;
+label = "RPCService service";
+function_RPCServicestartCalcPi[label="<return_type>function startCalcPi :: string|<param_decimal>decimal :: i8"];
+function_RPCServicegetTaskStatus[label="<return_type>function getTaskStatus :: calcResult|<param_uuid>uuid :: string"];
+function_RPCServicelistTasks[label="<return_type>function listTasks :: list\<calcResult\>"];
+ }
+function_RPCServicegetTaskStatus:return_type -> calcResult
+function_RPCServicelistTasks:return_type -> calcResult
+}
