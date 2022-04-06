@@ -5,5 +5,6 @@ COPY ./requirements.txt /opt/requirements.txt
 RUN pip install --no-cache-dir --upgrade -r /opt/requirements.txt
 COPY ./main.py /opt/main.py
 COPY ./shema.py /opt/shema.py
+COPY ./tclient.py /opt/tclient.py
 
-CMD ["python main.py", "-n"]
+ENTRYPOINT ["uvicorn", "main:app", "--host 0.0.0.0", "--port 8000", "--workers 4"]

@@ -1,4 +1,4 @@
-from tclient.shema import *
+from shema import *
 import datetime, psutil, socket
 
 #Thrift interface
