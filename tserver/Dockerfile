@@ -8,5 +8,8 @@ COPY ./calcpicelery /opt/calcpicelery
 COPY ./tserver.py /opt/tserver.py
 COPY ./monitoring.py /opt/monitoring.py
 COPY ./shema.py /opt/shema.py
-
-ENTRYPOINT ["celery", "-A calcpicelery", "worker", "-l info"]
+EXPOSE 9000
+ENTRYPOINT ["celery", "-A", "calcpicelery", "worker", "-l", "info"]
+# ENTRYPOINT [ "/bin/bash" ]
+#docker build -t tserver .
+#docker run -d -p 9000:9000 --rm  tserver
