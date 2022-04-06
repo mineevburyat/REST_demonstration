@@ -4,10 +4,15 @@ services:
     image: rabbitmq
     ports: 
       - "5672:5672"
-  project:
-    build: .
+  tserver:
+    build: ./tserver
     ports:
-      - "8000:8000"
       - "9001:9001"
     links:
       - rabbitmqsrv
+  tclient:
+    build: ./tclient
+    ports:
+      - "8000:8000"
+    links:
+      - tserver

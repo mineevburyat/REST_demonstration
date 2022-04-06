@@ -1,5 +1,8 @@
-from shema import *
+from tclient.shema import *
 import datetime, psutil, socket
+
+#Thrift interface
+
 
 def _getHostname():
   return socket.gethostname()

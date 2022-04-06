@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Path
 import uvicorn
-from shema import CPUPercent, PartInfo, CPUTimesPercent
-from monitoring import *
+from tclient.shema import CPUPercent, PartInfo, CPUTimesPercent
+from tserver.monitoring import *
 from calcpicelery.tasks import calcPi
 import json
 import datetime
