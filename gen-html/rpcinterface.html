@@ -10,11 +10,11 @@
 отображает параметры хоста: cpu load, memory load и прочее
 </pre><br/><table class="table-bordered table-striped table-condensed"><thead><tr><th>Module</th><th>Services</th><th>Data types</th><th>Constants</th></tr></thead><tbody>
 <tr>
-<td>rpcinterface</td><td><a href="#Svc_RPCService">RPCService</a><br/>
+<td>rpcinterface</td><td><a href="#Svc_RPCcelery">RPCcelery</a><br/>
 <ul>
-<li><a href="#Fn_RPCService_getTaskStatus">getTaskStatus</a></li>
-<li><a href="#Fn_RPCService_listTasks">listTasks</a></li>
-<li><a href="#Fn_RPCService_startCalcPi">startCalcPi</a></li>
+<li><a href="#Fn_RPCcelery_getTaskStatus">getTaskStatus</a></li>
+<li><a href="#Fn_RPCcelery_listTasks">listTasks</a></li>
+<li><a href="#Fn_RPCcelery_startCalcPi">startCalcPi</a></li>
 </ul>
 </td>
 <td><a href="#Struct_BadTask">BadTask</a><br/>
@@ -45,14 +45,14 @@
 <tr><td>2</td><td>error_code</td><td><code>i16</code></td><td>Сервисный код
 </td><td>default</td><td></td></tr>
 </tbody></table><br/></div><hr/><h2 id="Services">Services</h2>
-<h3 id="Svc_RPCService">Service: RPCService</h3>
-<div class="definition"><h4 id="Fn_RPCService_startCalcPi">Function: RPCService.startCalcPi</h4>
+<h3 id="Svc_RPCcelery">Service: RPCcelery</h3>
+<div class="definition"><h4 id="Fn_RPCcelery_startCalcPi">Function: RPCcelery.startCalcPi</h4>
 <pre><code>string</code> startCalcPi(<code>i8</code> decimal)
 </pre><pre>Запустить вычисление числа Pi с заданной точностью
 
 @param decimal количество цифр после запятой
 @return UUID задачи в очереди
-</pre><br/></div><div class="definition"><h4 id="Fn_RPCService_getTaskStatus">Function: RPCService.getTaskStatus</h4>
+</pre><br/></div><div class="definition"><h4 id="Fn_RPCcelery_getTaskStatus">Function: RPCcelery.getTaskStatus</h4>
 <pre><code><a href="#Struct_calcResult">calcResult</a></code> getTaskStatus(<code>string</code> uuid)
     throws <code><a href="#Struct_BadTask">BadTask</a></code>
 </pre><pre>Получить результат задачи по UUID
@@ -60,7 +60,7 @@
 @param uuid идентификатор задачи в очереди
 @return отчет о задаче в очереди
 @throws BadTask отсутствие идентификатора задачи
-</pre><br/></div><div class="definition"><h4 id="Fn_RPCService_listTasks">Function: RPCService.listTasks</h4>
+</pre><br/></div><div class="definition"><h4 id="Fn_RPCcelery_listTasks">Function: RPCcelery.listTasks</h4>
 <pre><code>list&lt;<code><a href="#Struct_calcResult">calcResult</a></code>&gt;</code> listTasks()
 </pre><pre>показать список всех задач
 

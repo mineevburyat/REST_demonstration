@@ -4,9 +4,9 @@
 <title>rpcinterface</title>
 <polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-303 548,-303 548,4 -4,4"/>
 <g id="clust1" class="cluster">
-<title>cluster_RPCService</title>
+<title>cluster_RPCcelery</title>
 <polygon fill="none" stroke="#000000" stroke-dasharray="5,2" points=".0208,-17.2347 .0208,-234.2347 386.0208,-234.2347 386.0208,-17.2347 .0208,-17.2347"/>
-<text text-anchor="middle" x="193.0208" y="-217.6347" font-family="Times,serif" font-size="14.00" fill="#000000">RPCService service</text>
+<text text-anchor="middle" x="193.0208" y="-217.6347" font-family="Times,serif" font-size="14.00" fill="#000000">RPCcelery service</text>
 </g>
 <!-- calcResult -->
 <g id="node1" class="node">
@@ -36,37 +36,37 @@
 <polyline fill="none" stroke="#000000" points="420.3941,-249.2409 544.0821,-249.2409 "/>
 <text text-anchor="middle" x="482.2381" y="-232.6409" font-family="Times,serif" font-size="14.00" fill="#000000">error_code :: i16</text>
 </g>
-<!-- function_RPCServicestartCalcPi -->
+<!-- function_RPCcelerystartCalcPi -->
 <g id="node3" class="node">
-<title>function_RPCServicestartCalcPi</title>
+<title>function_RPCcelerystartCalcPi</title>
 <polygon fill="#ffe4c4" stroke="#000000" points="204.1317,-152.0756 204.1317,-201.6756 378.3863,-201.6756 378.3863,-152.0756 204.1317,-152.0756"/>
 <text text-anchor="middle" x="291.259" y="-185.0756" font-family="Times,serif" font-size="14.00" fill="#000000">function startCalcPi :: string</text>
 <polyline fill="none" stroke="#000000" points="204.1317,-176.8756 378.3863,-176.8756 "/>
 <text text-anchor="middle" x="291.259" y="-160.2756" font-family="Times,serif" font-size="14.00" fill="#000000">decimal :: i8</text>
 </g>
-<!-- function_RPCServicegetTaskStatus -->
+<!-- function_RPCcelerygetTaskStatus -->
 <g id="node4" class="node">
-<title>function_RPCServicegetTaskStatus</title>
+<title>function_RPCcelerygetTaskStatus</title>
 <polygon fill="#ffe4c4" stroke="#000000" points="7.8498,-25.4626 7.8498,-75.0626 225.6388,-75.0626 225.6388,-25.4626 7.8498,-25.4626"/>
 <text text-anchor="middle" x="116.7443" y="-58.4626" font-family="Times,serif" font-size="14.00" fill="#000000">function getTaskStatus :: calcResult</text>
 <polyline fill="none" stroke="#000000" points="7.8498,-50.2626 225.6388,-50.2626 "/>
 <text text-anchor="middle" x="116.7443" y="-33.6626" font-family="Times,serif" font-size="14.00" fill="#000000">uuid :: string</text>
 </g>
-<!-- function_RPCServicegetTaskStatus&#45;&gt;calcResult -->
+<!-- function_RPCcelerygetTaskStatus&#45;&gt;calcResult -->
 <g id="edge1" class="edge">
-<title>function_RPCServicegetTaskStatus:return_type-&gt;calcResult</title>
+<title>function_RPCcelerygetTaskStatus:return_type-&gt;calcResult</title>
 <path fill="none" stroke="#000000" d="M225.7443,-62.2626C225.7443,-62.2626 322.1556,-72.9047 388.8984,-80.2719"/>
 <polygon fill="#000000" stroke="#000000" points="388.8903,-82.0316 394.0522,-80.8408 389.2744,-78.5527 388.8903,-82.0316"/>
 </g>
-<!-- function_RPCServicelistTasks -->
+<!-- function_RPCcelerylistTasks -->
 <g id="node5" class="node">
-<title>function_RPCServicelistTasks</title>
+<title>function_RPCcelerylistTasks</title>
 <polygon fill="#ffe4c4" stroke="#000000" points="17.3286,-85.8968 17.3286,-121.8968 239.256,-121.8968 239.256,-85.8968 17.3286,-85.8968"/>
 <text text-anchor="middle" x="128.2923" y="-99.7968" font-family="Times,serif" font-size="14.00" fill="#000000">function listTasks :: list&lt;calcResult&gt;</text>
 </g>
-<!-- function_RPCServicelistTasks&#45;&gt;calcResult -->
+<!-- function_RPCcelerylistTasks&#45;&gt;calcResult -->
 <g id="edge2" class="edge">
-<title>function_RPCServicelistTasks:return_type-&gt;calcResult</title>
+<title>function_RPCcelerylistTasks:return_type-&gt;calcResult</title>
 <path fill="none" stroke="#000000" d="M239.4352,-98.1349C289.405,-95.5444 346.5201,-92.5835 388.8394,-90.3896"/>
 <polygon fill="#000000" stroke="#000000" points="389.0228,-92.1325 393.9254,-90.1259 388.8415,-88.6372 389.0228,-92.1325"/>
 </g>

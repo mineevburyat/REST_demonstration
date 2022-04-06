@@ -2,7 +2,7 @@
 * Микросервис позволяет давать задания на вычисления в очередь celery и 
 * отображает параметры хоста: cpu load, memory load и прочее
 */
-namespace py prcinterface
+namespace py RPCcelery
 /**
 * структура результата задачи
 */
@@ -48,7 +48,7 @@ exception BadTask {
 } 
 
 //Микросервисы
-service RPCService {
+service RPCcelery {
   /**
   * Запустить вычисление числа Pi с заданной точностью
   * 
