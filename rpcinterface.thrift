@@ -2,7 +2,7 @@
 * Микросервис позволяет давать задания на вычисления в очередь celery и 
 * отображает параметры хоста: cpu load, memory load и прочее
 */
-namespace py RPCcelery
+namespace * RPCcelery
 /**
 * структура результата задачи
 */
