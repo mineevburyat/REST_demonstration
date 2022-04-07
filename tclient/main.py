@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Path
 import uvicorn
-from shema import CPUPercent, PartInfo, CPUTimesPercent
-
+from shema import resultTask
+from tclient import *
 
 import json
 import datetime
@@ -9,24 +9,23 @@ import os
 
 app = FastAPI()
 
-#заглушка
-result = '{"id":"test-fcff2b31-f6a5-4c28-8e87-2a530b4cd2c4", "status": "SUCCESS", "pushqtime": "Thu Feb 17 00:47:22 2022", "starttime": "Thu Feb 17 00:47:22 2022", "result": 3.14159, "stoptime": "Thu Feb 17 00:49:08 2022"}'
-
 @app.get('/',)
 async def home():
     return "show info"
 
-@app.get('/leibnic/{decimal}')
-async def leibnic_method_calc_from_celery(decimal: int):
-    #запуск клиента thrift и запрос на RPC calcPI в ответ получаем json result задачи
+@app.get('/calcpi/{decimal}')
+async def calc_pi_in_celery(decimal: int):
+    # запуск клиента thrift, который передаст RPC на thrift server и получит uuid задачи
     # result = calcPi.delay(decimal)
-    return result
+    result = startCalcPi(decimal)
+    return '{"id": "{result}"}'.format(result=result)
 
-@app.get("/tasks/{task_id}")
+@app.get("/task/{task_id}")
 async def get_status_task(task_id: str):
-    #запуск клиента thrift и запрос на RPC calcPI в ответ получаем json result задачи
+    # запуск клиента thrift, который передаст RPC на thrift server и получит result задачи с заданным uuid
     # result = calcPi.delay(decimal)
-    return result
+    result = getTaskStatus(task_id)
+    return resultTask(**result)
 
 @app.get('/alltasks/')
 async def get_tasks_list():

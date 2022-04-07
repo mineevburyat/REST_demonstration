@@ -2,10 +2,9 @@
 import sys
 sys.path.append('gen-py')
 # sys.path.insert(0, glob.glob('../../lib/py/build/lib*')[0])
-
-from RPCcelery.RPCcelery import Client
-from RPCcelery.ttypes import InvalidOperation, Operation
-
+from RPC import RPCcelery
+from RPC.RPCcelery import Client
+from RPC.ttypes import calcResult
 # from shared.ttypes import SharedStruct
 
 from thrift.transport import TSocket
@@ -15,59 +14,44 @@ from thrift.server import TServer
 
 
 class Handler:
-    def __init__(self):
-        self.log = {}
+  def __init__(self):
+    self.log = {}
 
-    def add(self, n1, n2):
-        print('add(%d,%d)' % (n1, n2))
-        return n1 + n2
+  def startCalcPi(self, decimal):
+    print('startCalcPi with {param} parametrs'.format(param=decimal))
+    return 'fcff2b31-f6a5-4c28-8e87-2a530b4cd2c4'
 
-    def calculate(self, logid, work):
-        print('calculate(%d, %r)' % (logid, work))
+  def getTaskStatus(self, uuid):
+    print('getTaskStatus with UUID: {uuid}'.format(uuid=uuid))
+    result = calcResult()
+    result.id = 'fcff2b31-f6a5-4c28-8e87-2a530b4cd2c4'
+    result.pushtime = 'Thu Feb 17 00:47:22 2022'
+    result.status = 'WORKED'
+    result.starttime = 'Thu Feb 17 00:47:22 2022'
+    result.result = 0
+    return result
 
-        if work.op == Operation.ADD:
-            val = work.num1 + work.num2
-        elif work.op == Operation.SUBTRACT:
-            val = work.num1 - work.num2
-        elif work.op == Operation.MULTIPLY:
-            val = work.num1 * work.num2
-        elif work.op == Operation.DIVIDE:
-            if work.num2 == 0:
-                raise InvalidOperation(work.op, 'Cannot divide by 0')
-            val = work.num1 / work.num2
-        else:
-            raise InvalidOperation(work.op, 'Invalid operation')
+  def listTask(self):
+    print('listTask')
 
-        # log = SharedStruct()
-        # log.key = logid
-        # log.value = '%d' % (val)
-        # self.log[logid] = log
-
-        return val
-
-    def getStruct(self, key):
-        print('getStruct(%d)' % (key))
-        return self.log[key]
-
-    def zip(self):
-        print('zip()')
+  def ping(self):
+    print('ping()')
 
 
 if __name__ == '__main__':
-    handler = Handler()
-    processor = RPCcelery.Processor(handler)
-    transport = TSocket.TServerSocket(host='0.0.0.0', port=9000)
-    tfactory = TTransport.TBufferedTransportFactory()
-    pfactory = TBinaryProtocol.TBinaryProtocolFactory()
+  handler = Handler()
+  processor = RPCcelery.Processor(handler)
+  transport = TSocket.TServerSocket(host='0.0.0.0', port=9000)
+  tfactory = TTransport.TBufferedTransportFactory()
+  pfactory = TBinaryProtocol.TBinaryProtocolFactory()
 
-    server = TServer.TSimpleServer(processor, transport, tfactory, pfactory)
+  # server = TServer.TSimpleServer(processor, transport, tfactory, pfactory)
 
-    # You could do one of these for a multithreaded server
-    # server = TServer.TThreadedServer(
-    #     processor, transport, tfactory, pfactory)
-    # server = TServer.TThreadPoolServer(
-    #     processor, transport, tfactory, pfactory)
+  # You could do one of these for a multithreaded server
+  server = TServer.TThreadedServer(processor, transport, tfactory, pfactory)
+  # server = TServer.TThreadPoolServer(
+  #     processor, transport, tfactory, pfactory)
 
-    print('Starting the server...')
-    server.serve()
-    print('done.')
+  print('Starting the server...')
+  server.serve()
+  print('done.')
