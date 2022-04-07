@@ -5,7 +5,7 @@ services:
     ports: 
       - "5672:5672"
   tserver:
-    build: ./tserver
+    build: ./tserverfolder
     ports:
       - "9000:9000"
     links:

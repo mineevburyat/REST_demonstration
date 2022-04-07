@@ -6,6 +6,7 @@ RUN pip install --no-cache-dir --upgrade -r /opt/requirements.txt
 COPY ./main.py /opt/main.py
 COPY ./shema.py /opt/shema.py
 COPY ./tclient.py /opt/tclient.py
+COPY ./gen-py /opt/gen-py
 EXPOSE 8000
 
 ENTRYPOINT ["uvicorn", "main:app",  "--host", "0.0.0.0", "--port", "8000", "--workers", "4"]
