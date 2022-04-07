@@ -14,7 +14,7 @@ from thrift.protocol import TBinaryProtocol
 
 def startCalcPi(decimal):
   # Make socket
-  transport = TSocket.TSocket('localhost', 9000)
+  transport = TSocket.TSocket('tserver', 9000)
   # Buffering is critical. Raw sockets are very slow
   transport = TTransport.TBufferedTransport(transport)
   # Wrap in a protocol
@@ -30,7 +30,7 @@ def startCalcPi(decimal):
 
 def getTaskStatus(uuid):
   # Make socket
-  transport = TSocket.TSocket('localhost', 9000)
+  transport = TSocket.TSocket('tserver', 9000)
   # Buffering is critical. Raw sockets are very slow
   transport = TTransport.TBufferedTransport(transport)
   # Wrap in a protocol
@@ -46,7 +46,7 @@ def getTaskStatus(uuid):
 
 def listTask():
   # Make socket
-  transport = TSocket.TSocket('localhost', 9000)
+  transport = TSocket.TSocket('tserver', 9000)
   # Buffering is critical. Raw sockets are very slow
   transport = TTransport.TBufferedTransport(transport)
   # Wrap in a protocol

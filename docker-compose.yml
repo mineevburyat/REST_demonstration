@@ -5,13 +5,13 @@ services:
     ports: 
       - "5672:5672"
   tserver:
-    build: ./tserverfolder
+    build: ./tserver
     ports:
       - "9000:9000"
     links:
       - rabbitmqsrv
   tclient:
-    build: ./tclient
+    build: ./tclientfolder
     ports:
       - "8000:8000"
     links:
