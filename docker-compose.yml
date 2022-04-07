@@ -8,6 +8,7 @@ services:
     build: ./tserver
     ports:
       - "9000:9000"
+      - "9001:9001"
     links:
       - rabbitmqsrv
   tclient:
