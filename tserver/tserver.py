@@ -1,12 +1,12 @@
-import glob
+# import glob
 import sys
 sys.path.append('gen-py')
-sys.path.insert(0, glob.glob('../../lib/py/build/lib*')[0])
+# sys.path.insert(0, glob.glob('../../lib/py/build/lib*')[0])
 
-from tutorial import Calculator
-from tutorial.ttypes import InvalidOperation, Operation
+from RPCcelery.RPCcelery import Client
+from RPCcelery.ttypes import InvalidOperation, Operation
 
-from shared.ttypes import SharedStruct
+# from shared.ttypes import SharedStruct
 
 from thrift.transport import TSocket
 from thrift.transport import TTransport
@@ -14,12 +14,9 @@ from thrift.protocol import TBinaryProtocol
 from thrift.server import TServer
 
 
-class CalculatorHandler:
+class Handler:
     def __init__(self):
         self.log = {}
-
-    def ping(self):
-        print('ping()')
 
     def add(self, n1, n2):
         print('add(%d,%d)' % (n1, n2))
@@ -41,10 +38,10 @@ class CalculatorHandler:
         else:
             raise InvalidOperation(work.op, 'Invalid operation')
 
-        log = SharedStruct()
-        log.key = logid
-        log.value = '%d' % (val)
-        self.log[logid] = log
+        # log = SharedStruct()
+        # log.key = logid
+        # log.value = '%d' % (val)
+        # self.log[logid] = log
 
         return val
 
@@ -57,9 +54,9 @@ class CalculatorHandler:
 
 
 if __name__ == '__main__':
-    handler = CalculatorHandler()
-    processor = Calculator.Processor(handler)
-    transport = TSocket.TServerSocket(host='127.0.0.1', port=9090)
+    handler = Handler()
+    processor = RPCcelery.Processor(handler)
+    transport = TSocket.TServerSocket(host='0.0.0.0', port=9000)
     tfactory = TTransport.TBufferedTransportFactory()
     pfactory = TBinaryProtocol.TBinaryProtocolFactory()
 

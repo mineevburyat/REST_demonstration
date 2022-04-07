@@ -3,3 +3,4 @@ tstpcutil.py
 __pycache__
 results
 *.exe
+.vscode

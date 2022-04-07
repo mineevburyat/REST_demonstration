@@ -2,7 +2,7 @@
 * Микросервис позволяет давать задания на вычисления в очередь celery и 
 * отображает параметры хоста: cpu load, memory load и прочее
 */
-namespace * RPCcelery
+namespace * RPC
 
 /*typedef map<i8, string> STATUS
 const  STATUS stats = {1: "WAITING",
