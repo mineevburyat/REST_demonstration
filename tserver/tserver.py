@@ -12,27 +12,46 @@ from thrift.transport import TTransport
 from thrift.protocol import TBinaryProtocol
 from thrift.server import TServer
 
+from calcpicelery.tasks import calcPi
+import datetime
+import json
+import os
 
 class Handler:
   def __init__(self):
     self.log = {}
 
   def startCalcPi(self, decimal):
-    print('startCalcPi with {param} parametrs'.format(param=decimal))
-    return 'fcff2b31-f6a5-4c28-8e87-2a530b4cd2c4'
+    result = calcPi.delay(decimal)
+    fileresult = {'id': result.id, 'status': "WAITING", 'pushtime': datetime.datetime.now().strftime('%c')}
+    with open('results/'+result.id, 'w') as f:
+        json.dump(fileresult, f)
+    print('[Server] startCalcPi({param}) - task UUID: {uuid}'.format(param=decimal, uuid=result.id))
+    return result.id
 
   def getTaskStatus(self, uuid):
-    print('getTaskStatus with UUID: {uuid}'.format(uuid=uuid))
-    result = calcResult()
-    result.id = 'fcff2b31-f6a5-4c28-8e87-2a530b4cd2c4'
-    result.pushtime = 'Thu Feb 17 00:47:22 2022'
-    result.status = 'WORKED'
-    result.starttime = 'Thu Feb 17 00:47:22 2022'
-    result.result = 0
+    try:
+        with open('results/' + uuid, 'rb') as f:
+            fresult = json.load(f)
+    except FileNotFoundError:
+        return {'error': "tasks not found"}
+    print('getTaskStatus with UUID: {uuid}. Result: {fresult}'.format(uuid=uuid, fresult=fresult))
+    result = calcResult(**fresult)
+    # result.id = fresult.id
+    # result.pushtime = fresult.pushtime
+    # result.status = fresult.status
+    # result.starttime = fresult.starttime
+    # result.result = fresult.result
     return result
 
   def listTask(self):
-    print('listTask')
+    files = os.listdir('results')
+    results = []
+    for file in files:
+        with open('results/'+file, 'r') as f:
+          task = json.load(f)
+          results.append(calcResult(**task))
+    return results
 
   def ping(self):
     print('ping()')
