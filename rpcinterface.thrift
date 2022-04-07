@@ -3,6 +3,14 @@
 * отображает параметры хоста: cpu load, memory load и прочее
 */
 namespace * RPCcelery
+
+/*typedef map<i8, string> STATUS
+const  STATUS stats = {1: "WAITING",
+                      2: "WORKED",
+                      3: "SUCSEED"}
+*/
+
+
 /**
 * структура результата задачи
 */
@@ -10,15 +18,15 @@ struct calcResult {
   /**
   * UUID задачи
   */
-  1: string id,
+  1: required string id,
   /**
   * статус выполнения задачи (строка константа)
   */
-  2: string status,
+  2: required string status,
   /**
   * время постановки задачи в очередь
   */
-  3: string pushtime,
+  3: required string pushtime,
   /**
   * время начала вычисления (опционально)
   */
@@ -40,11 +48,11 @@ exception BadTask {
   /**
   * The problem uuid
   */
-  1: string       uuid,
+  1: required string       uuid,
   /**
   * Сервисный код
   */
-  2: i16          error_code
+  2: required i16          error_code
 } 
 
 //Микросервисы
