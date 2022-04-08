@@ -30,7 +30,7 @@ ___
 
 Подробнее можно почитать и потестировать по адресу http://127.0.0.1:8000/docs
 
-[Просмотреть документацию на IDL thrift](https://htmlpreview.github.io/?https://github.com/mineevburyat/REST_demonstration/blob/master/gen-html/index.html)
+[Просмотреть документацию на IDL thrift](https://htmlpreview.github.io/?https://github.com/mineevburyat/REST_demonstration/blob/master/gen-html/rpcinterface.html)
 
 Блок схема:
 <img src="./gen-gv/graphviz.svg">
