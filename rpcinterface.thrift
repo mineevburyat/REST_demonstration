@@ -48,7 +48,7 @@ struct calcResult {
   /** 
   * текущий результат (опционально)
   */
-  6: optional RESULT result
+  6: optional double result
 }
 
 /*

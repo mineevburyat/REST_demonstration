@@ -23,7 +23,7 @@ def calcPi(self, decimal:int):
     selfresult={'id': "error??"}
   selfresult['starttime'] = datetime.datetime.now().strftime('%c')
   selfresult['status'] =  "PROGRESS"
-  selfresult['result']= {'percent': 0, 'intermediate': 3}
+  selfresult['result']=  0
   with open(file_id, 'w') as f:
         json.dump(selfresult, f)
   # percentwork
@@ -36,7 +36,8 @@ def calcPi(self, decimal:int):
     summa += pow(-1, i) / (2*i + 1)
     if i % _halfpercent == 0:
       percent += 0.5
-      selfresult['result'] = {'percent': percent, 'intermediate': round(summa*4, decimal)}
+      # selfresult['result'] = {'percent': percent, 'intermediate': round(summa*4, decimal)}
+      selfresult['result'] =  round(summa*4, decimal)
       with open(file_id, 'w') as f:
         json.dump(selfresult, f)
       sleep(sleepVar)

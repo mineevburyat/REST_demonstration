@@ -146,9 +146,8 @@ class calcResult(object):
                 else:
                     iprot.skip(ftype)
             elif fid == 6:
-                if ftype == TType.STRUCT:
-                    self.result = RESULT()
-                    self.result.read(iprot)
+                if ftype == TType.DOUBLE:
+                    self.result = iprot.readDouble()
                 else:
                     iprot.skip(ftype)
             else:
@@ -182,8 +181,8 @@ class calcResult(object):
             oprot.writeString(self.stoptime.encode('utf-8') if sys.version_info[0] == 2 else self.stoptime)
             oprot.writeFieldEnd()
         if self.result is not None:
-            oprot.writeFieldBegin('result', TType.STRUCT, 6)
-            self.result.write(oprot)
+            oprot.writeFieldBegin('result', TType.DOUBLE, 6)
+            oprot.writeDouble(self.result)
             oprot.writeFieldEnd()
         oprot.writeFieldStop()
         oprot.writeStructEnd()
@@ -311,7 +310,7 @@ calcResult.thrift_spec = (
     (3, TType.STRING, 'pushqtime', 'UTF8', None, ),  # 3
     (4, TType.STRING, 'starttime', 'UTF8', None, ),  # 4
     (5, TType.STRING, 'stoptime', 'UTF8', None, ),  # 5
-    (6, TType.STRUCT, 'result', [RESULT, None], None, ),  # 6
+    (6, TType.DOUBLE, 'result', None, None, ),  # 6
 )
 all_structs.append(BadTask)
 BadTask.thrift_spec = (

@@ -22,12 +22,12 @@ class Handler:
     self.log = {}
 
   def startCalcPi(self, decimal):
-    result = calcPi.delay(decimal)
-    fileresult = {'id': result.id, 'status': "WAITING", 'pushqtime': datetime.datetime.now().strftime('%c')}
-    with open('results/'+result.id, 'w') as f:
+    task = calcPi.delay(decimal)
+    fileresult = {'id': task.id, 'status': "WAITING", 'pushqtime': datetime.datetime.now().strftime('%c')}
+    with open('results/' + task.id, 'w') as f:
         json.dump(fileresult, f)
-    print('[Server] startCalcPi({param}) - task UUID: {uuid}'.format(param=decimal, uuid=result.id))
-    return result.id
+    print('[Server] startCalcPi({param}) - task UUID: {uuid}'.format(param=decimal, uuid=task.id))
+    return task.id
 
   def getTaskStatus(self, uuid):
     try:
@@ -35,8 +35,10 @@ class Handler:
             fresult = json.load(f)
     except FileNotFoundError:
         return {'error': "tasks not found"}
-    print('getTaskStatus with UUID: {uuid}. Result: {fresult}'.format(uuid=uuid, fresult=fresult))
-    return calcResult(**fresult)
+    print('[Server] getTaskStatus with UUID: {uuid}. \n[Server]Result: {fresult}'.format(uuid=uuid, fresult=fresult))
+    result = calcResult(**fresult)
+    print(result)
+    return result
     # result.id = fresult.id
     # result.pushtime = fresult.pushtime
     # result.status = fresult.status
@@ -44,13 +46,13 @@ class Handler:
     # result.result = fresult.result
     # return result
 
-  def listTask(self):
+  def listTasks(self):
     files = os.listdir('results')
     results = []
     for file in files:
         with open('results/'+file, 'r') as f:
-          task = json.load(f)
-          results.append(calcResult(**task))
+          fresult = json.load(f)
+          results.append(calcResult(**fresult))
     return results
 
   def ping(self):
