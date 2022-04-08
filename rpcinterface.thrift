@@ -10,6 +10,16 @@ const  STATUS stats = {1: "WAITING",
                       3: "SUCSEED"}
 */
 
+struct RESULT {
+  /**
+  * Процент выполнения задачи
+  */
+  1: required double percent,
+  /**
+  * Промежуточный или конечный результат
+  */
+  2: required double intermediate
+}
 
 /**
 * структура результата задачи
@@ -38,7 +48,7 @@ struct calcResult {
   /** 
   * текущий результат (опционально)
   */
-  6: optional double result
+  6: optional RESULT result
 }
 
 /*

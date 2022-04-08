@@ -36,13 +36,13 @@ class Handler:
     except FileNotFoundError:
         return {'error': "tasks not found"}
     print('getTaskStatus with UUID: {uuid}. Result: {fresult}'.format(uuid=uuid, fresult=fresult))
-    result = calcResult(**fresult)
+    return calcResult(**fresult)
     # result.id = fresult.id
     # result.pushtime = fresult.pushtime
     # result.status = fresult.status
     # result.starttime = fresult.starttime
     # result.result = fresult.result
-    return result
+    # return result
 
   def listTask(self):
     files = os.listdir('results')
