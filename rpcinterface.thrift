@@ -36,7 +36,7 @@ struct calcResult {
   /**
   * время постановки задачи в очередь
   */
-  3: required string pushtime,
+  3: required string pushqtime,
   /**
   * время начала вычисления (опционально)
   */

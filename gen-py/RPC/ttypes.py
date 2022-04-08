@@ -95,7 +95,7 @@ class calcResult(object):
     Attributes:
      - id: UUID задачи
      - status: статус выполнения задачи (строка константа)
-     - pushtime: время постановки задачи в очередь
+     - pushqtime: время постановки задачи в очередь
      - starttime: время начала вычисления (опционально)
      - stoptime: время завершения вычисления (опционально)
      - result: текущий результат (опционально)
@@ -103,10 +103,10 @@ class calcResult(object):
     """
 
 
-    def __init__(self, id=None, status=None, pushtime=None, starttime=None, stoptime=None, result=None,):
+    def __init__(self, id=None, status=None, pushqtime=None, starttime=None, stoptime=None, result=None,):
         self.id = id
         self.status = status
-        self.pushtime = pushtime
+        self.pushqtime = pushqtime
         self.starttime = starttime
         self.stoptime = stoptime
         self.result = result
@@ -132,7 +132,7 @@ class calcResult(object):
                     iprot.skip(ftype)
             elif fid == 3:
                 if ftype == TType.STRING:
-                    self.pushtime = iprot.readString().decode('utf-8', errors='replace') if sys.version_info[0] == 2 else iprot.readString()
+                    self.pushqtime = iprot.readString().decode('utf-8', errors='replace') if sys.version_info[0] == 2 else iprot.readString()
                 else:
                     iprot.skip(ftype)
             elif fid == 4:
@@ -169,9 +169,9 @@ class calcResult(object):
             oprot.writeFieldBegin('status', TType.STRING, 2)
             oprot.writeString(self.status.encode('utf-8') if sys.version_info[0] == 2 else self.status)
             oprot.writeFieldEnd()
-        if self.pushtime is not None:
-            oprot.writeFieldBegin('pushtime', TType.STRING, 3)
-            oprot.writeString(self.pushtime.encode('utf-8') if sys.version_info[0] == 2 else self.pushtime)
+        if self.pushqtime is not None:
+            oprot.writeFieldBegin('pushqtime', TType.STRING, 3)
+            oprot.writeString(self.pushqtime.encode('utf-8') if sys.version_info[0] == 2 else self.pushqtime)
             oprot.writeFieldEnd()
         if self.starttime is not None:
             oprot.writeFieldBegin('starttime', TType.STRING, 4)
@@ -193,8 +193,8 @@ class calcResult(object):
             raise TProtocolException(message='Required field id is unset!')
         if self.status is None:
             raise TProtocolException(message='Required field status is unset!')
-        if self.pushtime is None:
-            raise TProtocolException(message='Required field pushtime is unset!')
+        if self.pushqtime is None:
+            raise TProtocolException(message='Required field pushqtime is unset!')
         return
 
     def __repr__(self):
@@ -308,7 +308,7 @@ calcResult.thrift_spec = (
     None,  # 0
     (1, TType.STRING, 'id', 'UTF8', None, ),  # 1
     (2, TType.STRING, 'status', 'UTF8', None, ),  # 2
-    (3, TType.STRING, 'pushtime', 'UTF8', None, ),  # 3
+    (3, TType.STRING, 'pushqtime', 'UTF8', None, ),  # 3
     (4, TType.STRING, 'starttime', 'UTF8', None, ),  # 4
     (5, TType.STRING, 'stoptime', 'UTF8', None, ),  # 5
     (6, TType.STRUCT, 'result', [RESULT, None], None, ),  # 6

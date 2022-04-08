@@ -23,7 +23,7 @@ class Handler:
 
   def startCalcPi(self, decimal):
     result = calcPi.delay(decimal)
-    fileresult = {'id': result.id, 'status': "WAITING", 'pushtime': datetime.datetime.now().strftime('%c')}
+    fileresult = {'id': result.id, 'status': "WAITING", 'pushqtime': datetime.datetime.now().strftime('%c')}
     with open('results/'+result.id, 'w') as f:
         json.dump(fileresult, f)
     print('[Server] startCalcPi({param}) - task UUID: {uuid}'.format(param=decimal, uuid=result.id))

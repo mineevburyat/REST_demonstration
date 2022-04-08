@@ -41,7 +41,7 @@ def calcPi(self, decimal:int):
         json.dump(selfresult, f)
       sleep(sleepVar)
   selfresult['status'] = "SUCCESS"
-  selfresult['result'] = round(summa * 4, decimal)
+  # selfresult['result'][''] = round(summa * 4, decimal)
   selfresult['stoptime'] = datetime.datetime.now().strftime('%c')
   with open(file_id, 'w') as f:
         json.dump(selfresult, f)
